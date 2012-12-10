@@ -6,10 +6,14 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.awt.*;
-import java.util.*;
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
-import java.util.functions.Predicates;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.function.Predicates;
 
 /**
  * @author Yohan Beschi
@@ -31,7 +35,7 @@ public class StreamTest {
     }
 
     /**
-     * Each shape will become green using {@link Iterator#forEach(java.util.functions.Block)}
+     * Each shape will become green using {@link java.util.Iterator#forEach(java.util.function.Block)}
      */
     @Test
     public void looping() {
@@ -41,8 +45,8 @@ public class StreamTest {
     }
 
     /**
-     * Each blue shape will become green using {@link java.util.streams.Stream#filter(java.util.functions.Predicate)} 
-     * and {@link Stream#forEach(java.util.functions.Block)}
+     * Each blue shape will become green using {@link java.util.stream.Stream#filter(java.util.function.Predicate)} 
+     * and {@link java.util.stream.Stream#forEach(java.util.function.Block)}
      */
     @Test
     public void filtering() {
@@ -57,8 +61,8 @@ public class StreamTest {
     }
 
     /**
-     * Each Red triangle will become green using {@link java.util.streams.Stream#filter(java.util.functions.Predicate)} twice
-     * and {@link Stream#forEach(java.util.functions.Block)}
+     * Each Red triangle will become green using {@link java.util.stream.Stream#filter(java.util.function.Predicate)} twice
+     * and {@link java.util.stream.Stream#forEach(java.util.function.Block)}
      */
     @Test
     public void multiFiltering() {
@@ -74,8 +78,8 @@ public class StreamTest {
     }
 
     /**
-     * Create an {@link ArrayList} of triangles using {@link java.util.streams.Stream#filter(java.util.functions.Predicate)}
-     * and {@link java.util.streams.Stream#into(java.util.streams.Stream.Destination)}
+     * Create an {@link ArrayList} of triangles using {@link java.util.stream.Stream#filter(java.util.function.Predicate)}
+     * and {@link java.util.stream.Stream#into(java.util.stream.Stream.Destination)}
      */
     @Test
      public void sublist() {
@@ -88,8 +92,8 @@ public class StreamTest {
     }
 
     /**
-     * Create a {@link HashSet} of colors each shapes using {@link java.util.streams.Stream#map(java.util.functions.Mapper)}
-     * and {@link java.util.streams.Stream#into(java.util.streams.Stream.Destination)}
+     * Create a {@link HashSet} of colors each shapes using {@link java.util.stream.Stream#map(java.util.function.Function)}
+     * and {@link java.util.stream.Stream#into(java.util.stream.Stream.Destination)}
      */
     @Test
     public void mapping() {
@@ -101,8 +105,8 @@ public class StreamTest {
     }
 
     /**
-     * Create a sorted {@link HashSet} of shape's name of each shape using {@link java.util.streams.Stream#map(java.util.functions.Mapper)},
-     * {@link java.util.streams.Stream#sorted(Comparator)} and {@link java.util.streams.Stream#into(java.util.streams.Stream.Destination)}.
+     * Create a sorted {@link HashSet} of shape's name of each shape using {@link java.util.stream.Stream#map(java.util.function.Function)},
+     * {@link java.util.stream.Stream#sorted(java.util.Comparator)} and {@link java.util.stream.Stream#into(java.util.stream.Stream.Destination)}.
      */
     @Test
      public void mappingSorted() {
@@ -119,8 +123,8 @@ public class StreamTest {
     }
 
     /**
-     * Add the weigh of each shape using {@link java.util.streams.Stream#map(java.util.functions.Mapper)},
-     * and {@link java.util.streams.Stream#reduce(Object, java.util.functions.BinaryOperator)}.
+     * Add the weigh of each shape using {@link java.util.stream.Stream#map(java.util.function.Function)},
+     * and {@link java.util.stream.Stream#reduce(Object, java.util.function.BinaryOperator)}.
      */
     @Test
     public void accumulator() {
@@ -132,7 +136,7 @@ public class StreamTest {
     }
 
     /**
-     * Return a default value if the list is empty using {@link java.util.streams.Stream#reduce(Object, java.util.functions.BinaryOperator)}
+     * Return a default value if the list is empty using {@link java.util.stream.Stream#reduce(Object, java.util.function.BinaryOperator)}
      */
     @Test
     public void emptyAccumulator() {

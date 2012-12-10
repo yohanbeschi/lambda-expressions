@@ -6,8 +6,8 @@ package org.isk.defenders.override;
 public interface Reader {
 	char next();
 	boolean hasNext();
-	
-	void skip(int i) default {
+
+    default void skip(int i) {
 		for (; i > 0 && hasNext(); i--) {
 			next();
 		}

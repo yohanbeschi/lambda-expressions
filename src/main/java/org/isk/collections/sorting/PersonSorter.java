@@ -3,7 +3,7 @@ package org.isk.collections.sorting;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.functions.Mapper;
+import java.util.function.Function;
 
 /**
  * This class contains different ways of sorting collections.
@@ -29,9 +29,9 @@ public class PersonSorter {
     };
 
     /**
-     * {@link Mapper} defined by a method reference {@link Person#getFirstName()}.
+     * {@link Function} defined by a method reference {@link Person#getFirstName()}.
      */
-    public final static Mapper<String, Person> MAPPER_BY_FIRSTNAME;
+    public final static Function<Person, String> MAPPER_BY_FIRSTNAME;
 
     static {
         MAPPER_BY_FIRSTNAME = Person::getFirstName;
@@ -81,7 +81,7 @@ public class PersonSorter {
     }
 
     /**
-     * Sorting by first names, using the method {@link PersonSorter#comparing(java.util.functions.Mapper)} with a lambda expression.
+     * Sorting by first names, using the method {@link PersonSorter#comparing(java.util.function.Function)} with a lambda expression.
      * @param list the list to sort.
      */
     public static void sortByFirstNameUsingComparingAndLambda(final List<Person> list) {
@@ -89,22 +89,22 @@ public class PersonSorter {
     }
 
     /**
-     * Sorting by first names, using the method {@link PersonSorter#comparing(java.util.functions.Mapper)} with a method reference 
+     * Sorting by first names, using the method {@link PersonSorter#comparing(java.util.function.Function)} with a method reference
      * of an instance method of an arbitrary object of a particular type ({@link Person} is this case).
      * @param list the list to sort.
      */
     public static void sortByFirstNameUsingComparingAndReference(final List<Person> list) {
-        Collections.sort(list, PersonSorter.comparing((Mapper<String, Person>)Person::getFirstName));
+        Collections.sort(list, PersonSorter.comparing((Function<Person, String>)Person::getFirstName));
     }
 
     /**
      * Sorting by first names, using the {@link List#sort(java.util.Comparator)} method 
-     * and the method {@link PersonSorter#comparing(java.util.functions.Mapper)} with a method reference 
+     * and the method {@link PersonSorter#comparing(java.util.function.Function)} with a method reference
      * of an instance method of an arbitrary object of a particular type ({@link Person} is this case).
      * @param list the list to sort.
      */
     public static void sortByFirstNameUsingListSort(final List<Person> list) {
-        list.sort(PersonSorter.comparing((Mapper<String, Person>)Person::getFirstName));
+        list.sort(PersonSorter.comparing((Function<Person, String>)Person::getFirstName));
     }
 
     /**
@@ -114,7 +114,7 @@ public class PersonSorter {
      * @param <R> the Return type.
      * @return the result of the comparison.
      */
-    public static <T, R extends Comparable<? super R>> Comparator<T> comparing(Mapper<R, T> mapper) {
-        return (x, y) -> mapper.map(x).compareTo(mapper.map(y));
+    public static <T, R extends Comparable> Comparator<T> comparing(Function<T, R> mapper) {
+        return (x, y) -> mapper.apply(x).compareTo(mapper.apply(y));
     }
 }

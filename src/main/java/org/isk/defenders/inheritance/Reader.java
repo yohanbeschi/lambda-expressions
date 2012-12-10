@@ -7,20 +7,20 @@ public interface Reader {
 	int getCounter();
 	char[] getString();
 	void inc();
-	
-	void skip(int i) default {
+
+    default void skip(int i) {
 		for (; i > 0 && hasNext(); i--) {
 			next();
 		}
 	}
-	
-	public char next() default {
+
+    default public char next() {
 		char c = this.getString()[this.getCounter()];
 		this.inc();
 		return c;
 	}
 
-	public boolean hasNext() default {
+    default public boolean hasNext() {
 		return this.getString().length > this.getCounter();
 	}
 }
